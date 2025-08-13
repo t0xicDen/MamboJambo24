@@ -1,0 +1,47 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36327.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MamboJambo.Scenario1.AppHost", "MamboJambo.Scenario1.AppHost\MamboJambo.Scenario1.AppHost.csproj", "{6E52E863-D91A-4C79-931C-D5AD327A29C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MamboJambo.Scenario1.ServiceDefaults", "MamboJambo.Scenario1.ServiceDefaults\MamboJambo.Scenario1.ServiceDefaults.csproj", "{BD3B9D23-6B51-D895-7501-BD86FE8CA765}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MamboBank.Gateway.WebApi", "MamboBank.Gateway.WebApi\MamboBank.Gateway.WebApi.csproj", "{0A86BA8A-950F-1583-649C-A3328458AA95}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StateManagement.Database", "..\Common\StateManagement.Database\StateManagement.Database.csproj", "{3F822DBE-0C6E-E04B-52BB-02FFB559676A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E52E863-D91A-4C79-931C-D5AD327A29C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E52E863-D91A-4C79-931C-D5AD327A29C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E52E863-D91A-4C79-931C-D5AD327A29C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E52E863-D91A-4C79-931C-D5AD327A29C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD3B9D23-6B51-D895-7501-BD86FE8CA765}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD3B9D23-6B51-D895-7501-BD86FE8CA765}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD3B9D23-6B51-D895-7501-BD86FE8CA765}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD3B9D23-6B51-D895-7501-BD86FE8CA765}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A86BA8A-950F-1583-649C-A3328458AA95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A86BA8A-950F-1583-649C-A3328458AA95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A86BA8A-950F-1583-649C-A3328458AA95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A86BA8A-950F-1583-649C-A3328458AA95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F822DBE-0C6E-E04B-52BB-02FFB559676A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F822DBE-0C6E-E04B-52BB-02FFB559676A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F822DBE-0C6E-E04B-52BB-02FFB559676A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F822DBE-0C6E-E04B-52BB-02FFB559676A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3F822DBE-0C6E-E04B-52BB-02FFB559676A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {49DE1959-D231-4F71-A4EF-8639140EF501}
+	EndGlobalSection
+EndGlobal
