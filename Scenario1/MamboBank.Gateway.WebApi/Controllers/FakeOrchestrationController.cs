@@ -43,7 +43,7 @@ public class FakeOrchestrationController : ControllerBase
             // LOCK PROCESS STATE
             if (!await processState.TryLockAsync())
             {
-                return BadRequest("In process");
+                return Accepted("In process");
             }
 
             // START STEP BY STEP FLOW
