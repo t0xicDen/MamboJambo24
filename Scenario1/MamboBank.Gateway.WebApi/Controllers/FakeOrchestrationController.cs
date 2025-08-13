@@ -78,8 +78,6 @@ public class FakeOrchestrationController : ControllerBase
                 await processState.UpdateAsync(isUnlock: true);
             }
 
-            // DE
-
             // BUILD & PERSIST PROCESS RESPONSE
             var response = BuildSuccessResponse(request);
 

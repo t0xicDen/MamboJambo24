@@ -1,7 +1,8 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using MamboBank.Gateway.WebApi.Data;
 using MamboBank.Gateway.WebApi.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using StateManagement.Database.Services;
 using System.Text.Json;
 
@@ -22,13 +23,16 @@ public class PersistedDepositCallbackController : ControllerBase
     [HttpPost("callback-3")]
     public async Task<IActionResult> DepositCallback([FromBody] DepositCallbackRequest request)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        // CREATE SQL TRANSACTION
+        using var sqlTransaction = _context.Database.BeginTransaction();
+
         try
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             // CREATE PROCESS REQUEST
             var processRequest = await _processService.CreateProcessStateRequestAsync(request.ExternalTransactionId, CancellationToken.None);
 
@@ -46,10 +50,16 @@ public class PersistedDepositCallbackController : ControllerBase
                 JsonSerializer.Serialize(request),
                 CancellationToken.None);
 
+            // COMMIT SQL TRANSACTION
+            await sqlTransaction.CommitAsync();
+
             return Ok(response);
         }
         catch (ExternalRequestIdAlreadyExistsException ex)
         {
+            // ROLLBACK SQL TRANSACTION
+            await sqlTransaction.RollbackAsync();
+
             var processResponse = await _processService.GetProcessResponseByExternalRequestIdAsync(ex.ExternalRequestId, CancellationToken.None);
 
             var deserializedResponse = JsonSerializer.Deserialize<ExtendedDepositCallbackResponse>(processResponse.ResponseBody);
