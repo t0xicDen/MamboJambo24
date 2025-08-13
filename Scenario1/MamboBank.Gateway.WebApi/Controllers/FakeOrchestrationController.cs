@@ -35,13 +35,16 @@ public class FakeOrchestrationController : ControllerBase
             var processState = await _processService.CreateOrGetProcessStateAsync(
                 request.ExternalTransactionId,
                 ProcessTypeDeposit, 
-                60, 
+                30, // Lock timeout in seconds
                 new DepositProcessData {  CurrentStep = "CreateTransaction" }, CancellationToken.None);
 
             var requestId = processState.CreateRequestId;
 
             // LOCK PROCESS STATE
-            await processState.UpdateAsync(isUnlock: false);
+            if (!await processState.TryLockAsync())
+            {
+                return BadRequest("In process");
+            }
 
             // START STEP BY STEP FLOW
 
@@ -53,8 +56,7 @@ public class FakeOrchestrationController : ControllerBase
                 await processState.UpdateAsync(isUnlock: false);
             }
 
-            if (processState.DeserializedProcessData!.CurrentStep == 
-                "UpdateBalance")
+            if (processState.DeserializedProcessData!.CurrentStep == "UpdateBalance")
             {
                 UpdateBalance();
 

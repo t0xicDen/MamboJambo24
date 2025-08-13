@@ -34,6 +34,19 @@ public class ProcessStateDao<TProcessData> : ProcessState
 
     private TProcessData? _processData;
 
+    public async Task<bool> TryLockAsync()
+    {
+        // Very simplified locking mechanism
+        if (IsLocked && LastModifiedDateTime.AddSeconds(LockTimeoutInSeconds) > DateTime.UtcNow)
+        {
+            return false; // Still locked
+        }
+
+        await UpdateAsync(isUnlock: false);
+
+        return true;
+    }
+
     public Task UpdateAsync(bool isUnlock)
     {
         _orchestrationDbContext.Entry(this).State = EntityState.Modified;
